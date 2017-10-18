@@ -14,3 +14,8 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+
+Route::group(['prefix' => '/api/beta/'], function () {
+    Route::get('makeComponents', ['uses' => 'ApiController@makeComponents', 'as' => 'api.makeComponents']);
+});
