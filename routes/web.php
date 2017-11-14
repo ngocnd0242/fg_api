@@ -17,5 +17,5 @@ Route::get('/', function () {
 
 
 Route::group(['prefix' => '/api/beta/'], function () {
-    Route::get('makeComponents', ['uses' => 'ApiController@makeComponents', 'as' => 'api.makeComponents']);
+    Route::post('makeComponents', ['uses' => 'ApiController@makeComponents', 'as' => 'api.makeComponents']);
 });
