@@ -35,9 +35,6 @@ class ApiController extends Controller
     {
         $data = $request->all();
         try {
-            if (!isset($data['asset_id'])) {
-                throw new Exception('asset_id not exists');
-            }
             $path = str_replace(env('BASE_URL'), '', $data['package_url']);
             $partialPath = explode("/", $path);
             $this->makeDirectory($partialPath[0] . '/' . $partialPath[1]);
