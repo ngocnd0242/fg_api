@@ -44,8 +44,8 @@ class ApiController extends Controller
             $s3 = app()->make('aws')->createClient('s3');
             if (Storage::disk('s3')->exists($path)) {
                 $filePath = 'assets/' . substr(md5(time()), 0, 7) . '.json';
-                $this->jsonData['tag'] = 'asset-' . $data['asset_id'] . '-' . $data['mode'] . '-' .
-                    Carbon::createFromFormat('Y-m-d H:i:s', $data['uploaded_at_timestamp'])->format('YmdHis');
+
+                $this->jsonData['tag'] = $data['tag'];
                 File::put(storage_path(self::DOWNLOAD_FOLDER . $path), json_encode($this->jsonData));
 
                 // upload to asset folder in s3
