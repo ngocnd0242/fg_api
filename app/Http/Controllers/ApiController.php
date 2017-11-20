@@ -14,8 +14,6 @@ class ApiController extends Controller
     private $mode = 0777;
     const DOWNLOAD_FOLDER = 'app/public/';
 
-    protected $removePath = 's3://csu-develop1-assets-components/';
-
     protected $jsonData = [
         "type" => "components_description",
         "version" => 1,
@@ -37,7 +35,7 @@ class ApiController extends Controller
     {
         $data = $request->all();
         try {
-            $path = str_replace($this->removePath, '', $data['package_url']);
+            $path = str_replace(env('REMOVE_PATH'), '', $data['package_url']);
             $partialPath = explode("/", $path);
             $this->makeDirectory($partialPath[0] . '/' . $partialPath[1]);
             $s3 = app()->make('aws')->createClient('s3');
