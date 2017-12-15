@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-
-Route::group(['prefix' => '/api/beta/'], function () {
-    Route::post('makeComponents', ['uses' => 'ApiController@makeComponents', 'as' => 'api.makeComponents']);
+Route::group(['prefix' => '/'], function () {
+    Route::post('target', ['uses' => 'CsuApiController@registerTarget', 'as' => 'api.registerTarget']);
+    Route::post('recon', ['uses' => 'CsuApiController@scanWhiteBox', 'as' => 'api.scanWhiteBox']);
 });
